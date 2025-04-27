@@ -82,7 +82,7 @@ async function deleteMessages(authToken, authorId, channelId, clear) {
         avarageping = (avarageping + delta.delta()) / 2
 
         if (!result.ok) {
-            console.log("Rate limit! Waiting 30 seconds!")
+            console.log(`Rate limit! Waiting ${settings.rateLimitDelay} ms!`)
             await wait(settings.rateLimitDelay)
         } else {
             const decoded = await result.json()
@@ -102,7 +102,7 @@ async function deleteMessages(authToken, authorId, channelId, clear) {
             }
             await wait(settings.collectionDelay)
         }
-        console.log(increacement)
+        
         if (increacement === 0) {
             break
         }
@@ -165,7 +165,7 @@ async function ynQuestion(question) {
     }
 }
 async function Start() {
-    console.log("DM archiver by AbdAsync\nFebruary 24th, 2025")
+    console.log("DM archiver by AbdAsync")
     const authToken = await questionAsync('Enter your authToken: ');
     const channelId = await questionAsync('Enter the target channel: ');
     const accountId = await questionAsync('Enter your account id: ');
